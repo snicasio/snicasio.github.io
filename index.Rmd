@@ -1,5 +1,5 @@
 ---
-title: "Programación básica en R"
+title: "Aquelarre estadístico"
 output: html_document
 ---
 
@@ -20,17 +20,15 @@ knitr::opts_chunk$set(echo = TRUE)
   }
 </style>
 
-# Inicio
-
-Bienvenidos al curso "Programación básica en R" en la Escuela Nacional de Estudios Superiores, unidad Morelia. A lo largo de este curso conocerán el ambiente de R, así como los fundamentos básicos de análisis y programación.
+Bienvenidos a la página de recursos para aprender estadística y programación a través del ambiente R. Esta página está diseñada para las asignaturas de "Modelación Estadística" e "Introducción a Métodos Multivariados" en la carrera de [Ciencias Ambientales](http://www.enesmorelia.unam.mx/index.php/oferta-academica/licenciaturas/licenciatura-en-ciencias-ambientales/#.XnKWkqgzYuE) y las asignaturas de [Estadística Aplicada a la Ecología I](http://www.ecologia.enesmorelia.unam.mx/pdf/27.pdf), [Estadística Aplicada a la Ecología II](http://www.ecologia.enesmorelia.unam.mx/pdf/34.pdf), [Ecología Teórica I](http://www.ecologia.enesmorelia.unam.mx/pdf/42.pdf), y [Ecología Informática](http://www.ecologia.enesmorelia.unam.mx/pdf/87.pdf) de la carrera de [Ecología](http://www.ecologia.enesmorelia.unam.mx/). Esta página también está destinada para los estudiantes del curso "Programación básica en R" en la Escuela Nacional de Estudios Superiores, unidad Morelia. En esta página conocerán el ambiente de R, los fundamentos básicos de análisis y programación, el marco conceptual y aplicaciones de distintos análisis estadísticos y matemáticos en las ciencias biológicas, sociales y económicas.
 
 ## Requisitos
 
-Este curso está dirigido a todo el público. Es necesario que tengan nociones básicas de estadística. En este curso abordaremos problemáticas que van desde temas administrativos y de contabilidad, hasta biológicos y de manejo de recursos naturales. El objetivo es que el participante conozca el potencial que tiene R en diversas disciplinas.
+La información de esta página está dirigida a todo el público. Es necesario que tengan nociones básicas de estadística. En este curso abordaremos problemáticas que van desde temas administrativos y de contabilidad, hasta biológicos y de manejo de recursos naturales. El objetivo es que el participante conozca el potencial que tienen la estadística y R en estas disciplinas.
 
-## [Acerca del profesor](about.html)
+## [Acerca de mi](about.html)
 
-## Temario
+## Temario general
 <div class = "col3">
 1. Introducción a R
     + Historia
