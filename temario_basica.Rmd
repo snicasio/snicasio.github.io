@@ -1,0 +1,95 @@
+---
+title: "Estadística básica"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+<style>
+.column-left{
+  float: left;
+  width: 33%;
+  text-align: left;
+}
+.column-center{
+  display: inline-block;
+  width: 33%;
+  text-align: left;
+}
+.column-right{
+  float: right;
+  width: 33%;
+  text-align: left;
+}
+</style>
+
+<div class="column-left">
+### Estadística descripitiva
+
+1. Medidas
+    + Tendencia central
+        + Media
+        + Mediana
+        + Moda
+    + Posición
+        + Límites
+        + Cuartiles
+    + Dispersión
+        + Varianza
+            + Grados de libertad
+        + Desviación estándar
+        + Coeficiente de variación
+2. Gráficas
+    + Histograma
+        + Frecuencia
+            + Absoluta
+            + Relativa
+        + Densidad
+    + Boxplot
+        + Límites
+        + Intercuartil
+    + Barplot
+    + Scatterplot
+</div>
+
+<div class="column-center">
+### Distribuciones de probabilidad
+
+1. Discretas
+    + Binomial
+        + Positiva
+        + Negativa
+    + Poisson
+2. Contínuas
+    + Normal
+    + t de Student
+    + F de Fisher
+    + Chi-cuadrada
+</div>
+
+<div class="column-right">
+### Estadística inferencial
+
+1. Estimadores
+    + Error estándar
+    + Intervalos de confianza
+        + Error de estimación
+        + Tamaño de muestra
+            + Con remuestreo
+            + Sin remuestreo
+2. Pruebas de hipótesis
+    + Tipos de hipótesis
+        + Alternativa
+        + Nula
+    + Errores
+        + Tipo I (alpha)
+        + Tipo II (beta)
+    + Pruebas
+        + Una muestra
+            + Media
+            + Proporción
+        + Dos muestras
+            + Media
+            + Proporción
+</div>

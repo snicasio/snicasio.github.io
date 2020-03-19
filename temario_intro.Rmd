@@ -1,0 +1,32 @@
+---
+title: "Introducción a R"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+1. Generalidades
+    + Historia
+    + Interfaz
+2. Operadores
+    + Lógicos
+    + Matemáticos
+3. Objetos
+    + [Vectores básicos](est_bas.html)
+        + [Atómicos](est_bas.html#111_atómicos)
+        + [Listas](est_bas.html#112_listas)
+    + [Vectores avanzados](est_avz.html)
+        + [Clase S3](est_avz.html#111_clase_s3)
+            + [Atómicos](est_avz.html#1111_vectores_atómicos_s3)
+                + [Factors](est_avz.html#11111_factores)
+                + [Fechas](est_avz.html#11112_fechas)
+                + [Fecha-hora](est_avz.html#11113_fecha-hora)
+                + [Duración](est_avz.html#11114_duraciones)
+            + [Listas](est_avz.html#1112_vectores_lista_s3)
+                + [Tablas](est_avz.html#11121_tablas)
+                + [Tibbles](est_avz.html#11122_tibbles)
+        + [Clase S4](est_avz.html#112_clase_s4)
+        + [Clase referencia](est_avz.html#113_clase_referencia)
+        + Clase R6

@@ -1,0 +1,114 @@
+---
+title: "Estadística univariada"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+<style>
+.column-left{
+  float: left;
+  width: 33%;
+  text-align: left;
+}
+.column-center{
+  display: inline-block;
+  width: 33%;
+  text-align: left;
+}
+.column-right{
+  float: right;
+  width: 33%;
+  text-align: left;
+}
+</style>
+
+<div class="column-left">
+### Análisis paramétricos
+
+1. Supuestos paramétricos
+    + Normalidad
+        + Prueba de Shapiro-Wilk
+        + Prueba de Kolmogorov-Smirnoff
+    + Homocedasticidad
+        + Prueba de Fisher
+        + Prueba de Barttlet
+        + Prueba de Levene
+        + Prueba de Fligner-Killeen
+    + Transformaciones
+        + Sesgo positivo
+        + Sesgo negativo
+2. Análisis de varianza (ANOVA)
+    + Una vía
+    + Dos vías
+    + Anidado
+    + Medidas repetidas
+3. Variables contínuas
+    + Covarianza
+    + Correlación
+        + Pearson
+4. Modelos lineales (LM)
+    + Regresión simple
+        + Ordenada al origen
+        + Pendiente
+        + Prueba "t" para pendiente
+        + Método de sumas de cuadrados
+        + Prueba "F" para suma de cuadrados
+        + Coeficiente de determinación ($R^{2}$)
+        + Validación
+            + LOOCV
+            + LTOCV
+            + Coeficiente de predicción ($R^{2}_{cv}$)
+    + Regresión múltiple
+            + Variables independientes
+            + Interacción de variables
+    + Análisis de covarianza (ANCOVA)
+</div>
+
+<div class="column-center">
+### Análisis no paramétricos
+
+1. Prueba de chi-cuadrada
+    + Tabla de frecuencias
+    + Tabla de contingencia
+2. Prueba de Kruskall-Wallis
+3. Correlación
+    + Spearman
+    + Kendall
+4. Modelos lineales
+    + Modelos lineales generalizados (GLM)
+        + Gaussiana
+        + Poisson
+        + Binomial
+            + Presencia/ausencia
+            + Proporciones
+  + Modelos aditivos generalizados (GAM)
+  + Modelos lineales mixtos
+    + Variable fija
+    + Variable aleatoria
+    + Pseudo $R^2$
+        + Condicional ($R^2_c$)
+        + Marginal ($R^2_m$)
+</div>
+
+<div class="column-right">
+### Evaluación de modelos
+
+1. Verosimilitud
+    + log-likelihhod
+    + LM
+    + GLM
+2. Criterios de selección
+    + Akaike ($AIC$)
+        + Cálculo
+        + Peso Akaike ($w_i$)
+        + Akaike corregido ($AIC_c$)
+        + Sobredispersión
+            + Corrección
+            + $qAIC$
+    + Bayesiano ($BIC$)
+3. Promedio de modelos
+    + $\beta_{1}$ promedio
+    + Error estándar incondicional
+</div>

@@ -1,0 +1,99 @@
+---
+title: "Programación básica en R"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+<style>
+.column-left{
+  float: left;
+  width: 33%;
+  text-align: left;
+}
+.column-center{
+  display: inline-block;
+  width: 33%;
+  text-align: left;
+}
+.column-right{
+  float: right;
+  width: 33%;
+  text-align: left;
+}
+</style>
+
+<div class="column-left">
+### Generalidades
+
+1. Paradigmas de la programación
+    + Declarativa
+        + Funcional
+        + Lógica
+        + Matemática
+    + Imperativa
+        + Pocesal
+        + Orientada a objetos
+</div>
+
+<div class="column-center">
+### Programación en R
+1. Control de flujo
+    + Elaboración de algoritmos
+2. Comandos
+    + Básicos
+        + Funciones
+            + function()
+            + return()
+            + if()
+            + else
+            + environment()
+        + Iteraciones
+            + for()
+            + while()
+            + repeat()
+    + Avanzados
+        + Funciones
+            + Familia apply
+                + apply()
+                + sapply()
+                + lapply()
+                + mapply()
+            + Otros
+                + Sweep()
+                + aggregate()
+        + Iteraciones
+            + break
+            + next
+3. Optimización
+    + Código
+    + Paralelización
+</div>
+
+<div class="column-right">
+### Aplicaciones
+1. Proyectos
+    + Individual
+        + Carpeta de proyecto
+        + Paquetes
+            + Elaboración de un paquete R
+        + Repositorio
+            + Git
+    + Grupales
+        + Acceso remoto
+        + Github
+    + Reportes
+        + Web
+        + pdf
+2. Vinculación
+    + SQL
+        + Comandos
+            + Básicos
+            + Avanzados
+        + Bases de datos
+    + Python
+        + Comandos
+            + Básicos
+            + Avanzados
+</div>
