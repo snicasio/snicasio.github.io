@@ -74,13 +74,16 @@ knitr::opts_chunk$set(echo = TRUE)
 
 1. Tipos de medidas
     + Absolutas
-    + Estadísticos de distribución
-        + MN
-        + AM
-        + MD
-        + RA
-        + SD
-        + CV
+    + Estadísticas
+        + Tendencia central
+            + MN
+            + AM
+        + Posición
+            + MD
+            + RA
+        + Dispersión
+            + SD
+            + CV
 2. Tipos de métricas
     + Clase
         + Área
