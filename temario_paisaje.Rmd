@@ -1,0 +1,128 @@
+---
+title: "Ecología del Paisaje"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+<div class = "row">
+<div class = "col-md-3">
+### Introducción
+
+1. Fragmentación
+    + Causas
+    + Efectos sobre la biodiversidad
+        + Tamaño
+        + Forma
+        + Aislamiento
+        + Deuda ecológica
+2. Ecología del paisaje
+    + Definición
+    + Estructura
+        + Composición
+            + Parche
+            + Matriz
+            + Heterogeneidad
+        + Configuración
+            + Subdivisión
+            + Aislamiento
+            + Complejidad
+    + Escala
+        + Concepto
+            + Espacial
+            + Temporal
+        + Componentes
+            + Resolución
+            + Extensión
+        + Dimensiones
+            + Fenómeno
+            + Muestreo
+            + Análisis
+        + Aproximaciones
+            + Multiescala
+            + Multinivel
+</div>
+
+<div class = "col-md-3">
+### Diseño experimental
+
+1. Unidad de muestreo
+    + Tamaño
+    + Tipo
+        + Parche
+        + Paisaje
+        + Focal patch
+        + Local landscape
+2. Unidad de paisaje
+    + Forma
+        + Cuadrada
+        + Circular+
+        + Otras
+    + Extensión
+        + Diseño uniescalar
+        + Diseño multiescalar
+    + Localización
+        + Diseño aleatorio
+        + Diseño sistemático
+        + Sobrelape
+</div>
+
+<div class = "col-md-3">
+### Métricas
+
+1. Tipos de medidas
+    + Absolutas
+    + Estadísticos de distribución
+        + MN
+        + AM
+        + MD
+        + RA
+        + SD
+        + CV
+2. Tipos de métricas
+    + Clase
+        + Área
+        + Borde
+        + Forma
+        + Área núcleo
+        + Constraste
+        + Agregación
+            + Aislamiento
+            + Subdivisión
+            + Agregación
+2. Paisaje
+    + Riqueza
+    + Diversidad
+</div>
+
+<div class = "col-md-3">
+### Efectos sobre la biodiversidad
+
+1. Composición del paisaje
+    + Pérdida de hábitat
+    + Matriz
+    + Heterogeneidad
+2. Configuración del paisaje
+    + Fragmentación *per se*
+        + Efectos negativos
+        + Efectos positivos
+3. Conectividad del paisaje
+    + Tipos
+        + Estructural
+        + Funcional
+            + Potencial
+            + Real
+    + Limitantes
+        + Espacial
+        + Ambiental
+        + Intrínseco
+            + Individuo
+            + Población
+            + Especie
+4. Debate fragmento/paisaje
+    + Ventajas/desventajas (parche)
+    + Ventajas/desventajas (paisaje)
+</div>
+</div>
