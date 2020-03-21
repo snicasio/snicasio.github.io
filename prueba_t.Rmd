@@ -1,0 +1,116 @@
+---
+title: "Variables dependientes categóricas"
+output:
+    html_document:
+        df_print: paged
+        toc: true
+        toc_depth: 6
+        toc_float: true
+        number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Prueba *t* de Student
+
+Esta prueba es un método de inferencia estadística para analizar diferencias entre las medias de dos grupos cuando el tamaño de muestra es limitado (n < 50), con la finalidad de determinar si pertenecen a la misma población. Por lo tanto, la hipótesis nula de esta prueba es que no existen diferencias entre las medias de ambas muestras. Rechazar la hipótesis nula implica que las diferencias entre medias no se deben al azar.
+
+<div class = "row">
+<div class = "col-md-5">
+<center>
+$H_o:\overline{x}_1 = \overline{x}_2$
+</center>
+</div>
+
+<div class = "col-md-5">
+<center>
+$H_1:\overline{x}_1 \neq \overline{x}_2$
+</center>
+</div>
+</div>
+
+El resultado de la prueba t genera dos resultados: el valor t y los grados de libertad. El primero representa la diferencia entre las medias dividida entre la variación dentro de ambas muestras (su error estándar). Valores t grandes indican una diferencia entre las medias y visceversa. Los grados de libertad se refierena los valores de un estudio que tienen la libertad de variar y son fundamentales para analizar la validez de la hipótesis nula. Su valor depende directamente del número de observaciones que existan en la muestra.
+
+Existen dos tipos de pruebas t en función de la procedencia de las muestras: independientes o dependientes.
+
+## Prueba *t* para muestras independientes
+
+Las prueba *t* para muestras independientes asume que las muestras provienen de dos poblaciones diferentes. Esta prueba puede variar de acuerdo al número de observaciones de cada muestra y la similitud de sus varianzas.
+
+### Varianza homogénea
+
+El cálculo tanto del valor t como de los grados de libertad cuando ambas muestras tienen el mismo número de observaciones y una varianza similar es el siguiente:
+
+<div class = "row">
+<div class = "col-md-5">
+<center>
+$t = \displaystyle\frac{\overline{X}_1 - \overline{X}_2}{\sqrt{\displaystyle\frac{S^2_1(n_1-1)+S^2_2(n_2-1)}{n_1+n_2-2}} \times \sqrt{\displaystyle\frac{1}{n_1} + \displaystyle\frac{1}{n_2}}}$
+</center>
+</div>
+
+<div class = "col-md-5">
+<center>
+$d.f. = n_1+n_2-2$
+</center>
+</div>
+</div>
+
+Donde $\overline{X}_1$ y $\overline{X}_2$ representan las medias, $S^2_1$ y $S^2_2$ las varianzas y $n_1$ y $n_2$ el número de observaciones de las muestras uno y dos, respectivamente
+
+### Varianza heterogénea
+
+Sin embargo, cuando la varianza y el número de observaciones entre muestras es diferente, el cálculo es a través de la **prueba t de Welch**:
+
+<div class = "row">
+<div class = "col-md-5">
+<center>
+$t = \displaystyle\frac{\overline{X}_1-\overline{X}_2}{\sqrt{\displaystyle\frac{S^2_1}{n_1}+\displaystyle\frac{S^2_1}{n_2}}}$
+</center>
+</div>
+
+<div class = "col-md-5">
+<center>
+$d.f.=\displaystyle\frac{\left(\displaystyle\frac{S^2_1}{n_1}+\displaystyle\frac{S^2_2}{n_2}\right)^2}{\displaystyle\frac{\left(\displaystyle\frac{S^2_1}{n_1}\right)^2}{n_1-1}+\displaystyle\frac{\left(\displaystyle\frac{S^2_2}{n_2}\right)^2}{n_2-1}}$
+</center>
+</div>
+</div>
+
+## Prueba *t* para muestras dependientes
+
+Esta prueba se realiza cuando: a) las muestras provinen de la misma población y son sometidas a distintos tratamientos (ej., fertilizante o dieta) o b) cuando se evalúa una misma muestra a través del tiempo. Por lo tanto, esta prueba analiza las diferencias entre tratamientos o en el tiempo:
+
+<div class = "row">
+<div class = "col-md-4">
+<center>
+$t = \displaystyle\frac{\overline{d}}{S_d/\sqrt{n}}$
+</center>
+</div>
+
+<div class = "col-md-4">
+<center>
+$\overline{d}=\displaystyle\frac{\sum{d_i}}{n}$
+</center>
+</div>
+
+<div class = "col-md-4">
+<center>
+$d.f.=n-1$
+</center>
+</div>
+</div>
+
+Donde $\overline{d}$ y $S_d$ son la media y diferencia estándar de la diferencia entre observaciones (tratamientos o series de tiempo). En este caso, las hipótesis nulas establecen que no existe un cambio (valor igual a cero):
+
+<center>
+$H_o$|$H_1$
+----|-----------
+$\overline{d} \leq 0$|$\overline{d} > 0$
+$\overline{d} \geq 0$|$\overline{d} < 0$
+$\overline{d} = 0$|$\overline{d} \neq 0$
+</center>
+
+## Ejemplos
+
+Realiza los ejercicios que vienen en el archivo "Pruebas t" dentro de la carpeta "Pruebas entre medias"

@@ -1,6 +1,5 @@
 ---
 title: "Estructura avanzada"
-author: "Sergio Nicasio-Arzeta"
 output:
     html_document:
         df_print: paged
