@@ -2,7 +2,7 @@
 title: "Variables dependientes categóricas"
 output:
     html_document:
-        df_print: paged
+        df_print: default
         toc: true
         toc_depth: 6
         toc_float: true
@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Prueba *t* de Student
+# Prueba **t** de Student
 
 Esta prueba es un método de inferencia estadística para analizar diferencias entre las medias de dos grupos cuando el tamaño de muestra es limitado (n < 50), con la finalidad de determinar si pertenecen a la misma población. Por lo tanto, la hipótesis nula de esta prueba es que no existen diferencias entre las medias de ambas muestras. Rechazar la hipótesis nula implica que las diferencias entre medias no se deben al azar.
 
@@ -35,7 +35,7 @@ El resultado de la prueba t genera dos resultados: el valor t y los grados de li
 
 Existen dos tipos de pruebas t en función de la procedencia de las muestras: independientes o dependientes.
 
-## Prueba *t* para muestras independientes
+## Prueba t para muestras independientes
 
 Las prueba *t* para muestras independientes asume que las muestras provienen de dos poblaciones diferentes. Esta prueba puede variar de acuerdo al número de observaciones de cada muestra y la similitud de sus varianzas.
 
@@ -59,9 +59,75 @@ $d.f. = n_1+n_2-2$
 
 Donde $\overline{X}_1$ y $\overline{X}_2$ representan las medias, $S^2_1$ y $S^2_2$ las varianzas y $n_1$ y $n_2$ el número de observaciones de las muestras uno y dos, respectivamente
 
+#### Ejemplo
+
+El consumo de cafeína está asociad a cambios en el ritmo cardiaco y por ende, podría afectar el metabolismo muscular. Para validar esta aseveración, se llevó a cabo un estudio para evaluar el efecto de la cafeína sobre la tasa de intercambio respiratorio (RER en inglés). El RER representa la proporción de $CO_2$ producido por $O_2$ consumido y es un indicador sobre la fuente de energía celular (carbohidratos o grasas). En este estudio se seleccionaron 18 voluntarios del mismo sexo y edad a quienes se les midió RER mientras realizaban ejercicios de brazo. Una hora antes de la prueba, nueve de ellos tomaron una cápsula de cafeína, mientras los otros nueve tomaron una cápsula placebo. Los resultados fueron los siguientes:
+
+Placebo|Cafeína
+-------|--------
+105|96
+119|99
+100|94
+97|89
+96|96
+101|93
+94|88
+95|105
+98|88
+
+Elaboremos la prueba
+
+```{r, collapse=TRUE,prompt=TRUE}
+
+    #   Elaboramos la tabla
+
+RER <- data.frame(Placebo = c(105,119,100,97,96,101,94,95,98),
+                  Cafeina = c(96,99,94,89,96,93,88,105,88))
+
+    #   Calculemos la media, desviacion estandar y numero de observaciones de ambas muestras
+
+media <- colMeans(RER)
+desv <- apply(RER,2,sd)
+n <- apply(RER,2,length)
+
+round(rbind(media,desv,n),3)
+
+    #   Ahora calculemos el valor t
+
+Sp <- sqrt((7.699^2*(9-1) + 5.608^2*(9-1))/(9+9-2)); Sp
+
+t <- (100.556 - 94.222)/(Sp*sqrt(1/9 + 1/9)); t
+
+    #   Si usamos la distribucion Z, el valor critico para una alfa de 0.05 seria el siguiente:
+
+qnorm(0.025);qnorm(0.025,lower.tail = F)
+
+    #   De acuerdo a este resultado, rechazariamos la Ho al tener suficiente evidencia de que las diferencias en RER son significativas. Sin embargo, el numero de observaciones no se ajusta a una distribucion Z.
+    #   En este caso usamos los valores de la tabla t de Student, la cual "incrementa" el valor critico en funcion de los grados de libertad:
+
+gl <- 9+9-2 # Grados de libertad
+
+qt(0.025,df = gl);qt(0.025,df = gl,lower.tail = F)
+
+    #   Con el valor de la distribucion t, observamos que no hay suficiente evidencia para rechazar la Ho. Por lo tanto, la cafeina no afecta la RER en este experimento
+
+
+    #   Este analisis lo podemos hacer con el comando "t.test". Para ello debemos arreglar la base de datos de la siguiente forma:
+
+prueba_rer <- data.frame(Capsula = c(rep("Placebo",9),rep("Cafeina",9)),
+                         RER = c(105,119,100,97,96,101,94,95,98,96,99,94,89,96,93,88,105,88))
+prueba_rer
+
+    #   Ahora usemos el comando. Es importante que declaremos que no es una prueba de muestras dependientes (paired = FALSE) y que las varianzas son homogeneas (var.equal = TRUE). Vean el p-value y los intervalos de confianza para que sepan por que NO se rechaza la hipotesis nula.
+
+t.test(RER ~ Capsula,data = prueba_rer,paired=FALSE,alternative="two.sided",var.equal=TRUE)
+
+```
+
+
 ### Varianza heterogénea
 
-Sin embargo, cuando la varianza y el número de observaciones entre muestras es diferente, el cálculo es a través de la **prueba t de Welch**:
+Sin embargo, cuando la varianza y el número de observaciones entre muestras es diferente, los grados de libertad se calculan al obtener una varianza ponderada. A este método se le conoce como **prueba t de Welch**, llamada así por su creador [Bernard Lewis Welch](https://en.wikipedia.org/wiki/Bernard_Lewis_Welch):
 
 <div class = "row">
 <div class = "col-md-5">
@@ -77,7 +143,55 @@ $d.f.=\displaystyle\frac{\left(\displaystyle\frac{S^2_1}{n_1}+\displaystyle\frac
 </div>
 </div>
 
-## Prueba *t* para muestras dependientes
+#### Ejemplo
+
+El médico de una universidad necesita saber difiere el peso entre hombres y mujeres de recién ingreso a la carrera de educación física. Para ello, tomó el peso de 20 mujeres y 20 hombres.
+
+```{r, collapse=TRUE,prompt=TRUE}
+
+library(datarium)
+data("genderweight")
+
+genderweight <- genderweight[,-1]   #   Eliminamos la coulmna de "id"
+
+    #   Veamos las varianzas. La varianza en el peso de mujeres es mucho mayor a la de hombres
+
+aggregate(genderweight$weight, by=list(genderweight$group),var)
+
+    #   Vamos a calcular la media, desviacion estandar y numero de observaciones de cada grupo:
+
+media <- aggregate(genderweight$weight, by=list(genderweight$group),mean)[,2]
+desv <- aggregate(genderweight$weight, by=list(genderweight$group),sd)[,2]
+n <- aggregate(genderweight$weight, by=list(genderweight$group),length)[,2]
+
+round(rbind(media,desv,n),3)
+
+    #   Ahora elaboremos la prueba de Welch:
+
+t <- (63.499 - 85.826)/sqrt(2.028^2/20 + 4.354^2/20); t
+
+    #   Observen como DISMINUYE el valor de los grados de libertad: 
+
+gl <- (2.028^2/20 + 4.354^2/20)^2/(((2.028^2/20)^2/(20-1)) +  ((4.354^2/20)^2/(20-1))); gl
+
+    #   Estos serian los valores criticos para una prueba de dos colas con un alfa de 0.05
+
+qt(0.025,df = gl);qt(0.025,df = gl,lower.tail = F)
+
+    #   El valor calculado de t se encuentra fuera del rango establecido por los valores criticos. Por lo tanto, rechazamos la hipotesis nula de que no hay diferencias entre pesos de hombres y mujeres
+
+    #   Ahora elaboremos la prueba con el comando "t.test". En este caso declaramos que no es una prueba de muestras dependientes (paired = FALSE) y que las varianzas son heterogeneas (var.equal = FALSE). Vean el p-value y los intervalos de confianza para que sepan por que SI se rechaza la hipotesis nula.
+
+t.test(weight ~ group,data=genderweight,paired=FALSE,alternative="two.sided",var.equal=FALSE)
+
+    #   ¿Que pasaria si usamos la prueba de t independiente para varianzas homogeneas? Observen como el valor de los intervalos es ligeramente menor.
+
+t.test(weight ~ group,data=genderweight,paired=FALSE,alternative="two.sided",var.equal=TRUE)
+```
+
+El método de Welch controla el efecto de las varianzas heterogeneas al reducir el numero de grados de libertad. Si observan sus tablas de t, los valores aumentan a medida que los grados de libertad disminuyen. Esta correccion disminuye la probabilidad de cometer un error tipo I 
+
+## Prueba t para muestras dependientes
 
 Esta prueba se realiza cuando: a) las muestras provinen de la misma población y son sometidas a distintos tratamientos (ej., fertilizante o dieta) o b) cuando se evalúa una misma muestra a través del tiempo. Por lo tanto, esta prueba analiza las diferencias entre tratamientos o en el tiempo:
 
@@ -111,6 +225,61 @@ $\overline{d} \geq 0$|$\overline{d} < 0$
 $\overline{d} = 0$|$\overline{d} \neq 0$
 </center>
 
-## Ejemplos
+#### Ejemplo
 
-Realiza los ejercicios que vienen en el archivo "Pruebas t" dentro de la carpeta "Pruebas entre medias"
+Un silvicultor necesita mejorar la sobrevivencia de las plántulas del árbol *Pinus durangensis* para su reintroducción en el sur de la sierra madre occidental. Para ello, debe incrementar la biomasa de las plántulas durante los tres meses que se encuentran en el vivero. Un micólogo le sugiere que inocule las plántulas con una micorriza nativa de esa región a partir de que germinen las semillas. El silvicultor entonces elabora un experimento utilizando 20 plántulas que pertenecen al mismo rodal. A 10 de ellas las inocula con el hongo, mientras las otras 10 no las inocula (grupo testigo). Después de tres meses, cosecha las plántulas y mide sus pesos secos, encontrando lo siguiente:
+
+Testigo|Micorriza
+-------|---------
+4.81|6.31
+4.17|5.12
+4.41|5.54
+3.59|5.5
+5.87|5.37
+3.83|5.29
+6.03|4.92
+4.89|6.15
+4.32|5.8
+4.69|5.26
+
+Analicemos si existen diferencias entre el peso seco de plántulas control e inoculadas. También evaluemos si el tratamiento con micorrizas efectivamente incrementó el peso seco de las plántulas.
+
+```{r, collapse=TRUE,prompt=TRUE}
+
+    #   Elaboremos los objetos y calculemos el promedio y desviacion estandar de sus diferencias
+
+pl_test <- c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69)
+pl_mic <- c(6.31,5.12,5.54,5.5,5.37,5.29,4.92,6.15,5.8,5.26)
+
+dif_peso <- pl_mic-pl_test   #   Diferencias
+
+cbind(pl_test,pl_mic,dif_peso)
+
+round(mean(dif_peso),3); round(sd(dif_peso),3); length(dif_peso)
+
+    #   Ahora calculemos el valor t y los grados de libertad
+
+t <- 0.865/(0.961/sqrt(10)); t
+
+gl <- 10-1; gl
+
+    #   Calculemos el valor critico de una prueba de dos colas usando una alfa de 0.05
+
+qt(0.025,gl);qt(0.025,gl,lower.tail = FALSE)
+
+    #   De acuerdo a los valores calculado y de tablas, las diferencias entre tratamientos son significativas (diferentes de cero). Por lo tanto, rechazamos la hipotesis nula.
+
+    #   Ahora elaboremos el analisis con el comando "t.test". En este caso, vamos a establecer que es una muestra dependiente (paired = TRUE). Pongan especial atencion al enunciado de la hipotesis alternativa
+
+pl_peso <- data.frame(Tratamiento = c(rep("test",10),rep("mico",10)),
+                      Peso = c(4.81,4.17,4.41,3.59,5.87,3.83,6.03,4.89,4.32,4.69,6.31,5.12,5.54,5.5,5.37,5.29,4.92,6.15,5.8,5.26))
+
+pl_peso
+
+t.test(Peso ~ Tratamiento,data=pl_peso,paired=TRUE,alternative="two.sided")
+
+    #   Por ultimo, evaluemos si el peso seco de las plantulas tratadas con micorrizas es mayor a las plantulas testigo
+
+t.test(Peso ~ Tratamiento,data=pl_peso,paired=TRUE,alternative="greater")
+```
+
