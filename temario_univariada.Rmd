@@ -102,18 +102,20 @@ knitr::opts_chunk$set(echo = TRUE)
 <div class="column-right">
 ### Evaluación de modelos
 
-1. Verosimilitud
-  + log-likelihhod
-  + LM
-  + GLM
-2. Criterios de selección
+1. Funciones de probabilidad
+  + [log-likelihhod](loglik.html)
+    + LM
+    + GLM
+2. [Criterios de selección](criterios_sel.html)
   + Akaike ($AIC$)
     + Cálculo
-    + Peso Akaike ($w_i$)
     + Akaike corregido ($AIC_c$)
     + Sobredispersión
-      + Corrección
-      + $qAIC$
+      + Corrección ($qAIC$)
+    + Diferencias Akaike ($\Delta$)
+    + Verosimilitud de un modelo
+      + Peso Akaike ($w_i$)
+      + Proporción de evidencia
   + Bayesiano ($BIC$)
 3. Promedio de modelos
   + $\beta_{1}$ promedio

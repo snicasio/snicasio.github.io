@@ -1,0 +1,65 @@
+---
+title: "Funciones de probabilidad"
+output:
+    html_document:
+        df_print: default
+        toc: true
+        toc_depth: 6
+        toc_float: true
+        number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Función log-likelihood
+
+
+```{r, collapse=TRUE,prompt=TRUE}
+
+data("mtcars")
+mtcars
+
+glm_bin <- glm(vs ~ wt, family = binomial, data = mtcars)
+
+tab <- data.frame(p = seq(0.01,1,0.01), p.occ = rep(NA,100), loglik = rep(NA,100), loglik.m = rep(NA,100))
+
+for(i in 1:nrow(tab)){
+    tab[i,2] <- ((factorial(32)/(factorial(14)*factorial(32-14)))*tab[i,1]^14)*(1-tab[i,1])^(32-14)
+    tab[i,3] <- log(factorial(32)/(factorial(14)*factorial(32-14)))+14*log(tab[i,1])+(32-14)*log(1-tab[i,1])
+    tab[i,4] <- sum((mtcars$vs*mtcars$wt*tab[i,3]))-sum(log(1+exp(mtcars$wt*tab[i,3])))
+}
+
+par(mfrow = c(1,3))
+plot(tab[,c(-3,-4)])
+plot(tab[,c(-2,-4)])
+plot(tab[,c(-2,-3)])
+
+max(tab$loglik)
+max(tab$loglik.m)
+
+summary(glm_bin)
+
+logLik(glm_bin)
+
+AIC(glm_bin)
+
+unclass(logLik(glm_bin))[1]*(-2)+(2*2)
+
+
+data("iris")
+
+mod_lin <- lm(Petal.Length ~ Sepal.Length, data = iris)
+    summary(mod_lin)
+    residuals(mod_lin)
+    n <- nrow(iris)
+    r <- 1
+    RSS <- sum(residuals(mod_lin)^2)
+    sigma <- RSS/(n-(r+1))
+    LL <- (-(1/2)*n)*log(sigma) - (n/2)*log(2*pi)-(n/2)
+    logLik(mod_lin)
+    
+    
+
+```

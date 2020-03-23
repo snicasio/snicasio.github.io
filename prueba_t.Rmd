@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Prueba **t** de Student
+# Prueba *t* de Student
 
 Esta prueba es un método de inferencia estadística para analizar diferencias entre las medias de dos grupos cuando el tamaño de muestra es limitado (n < 50), con la finalidad de determinar si pertenecen a la misma población. Por lo tanto, la hipótesis nula de esta prueba es que no existen diferencias entre las medias de ambas muestras. Rechazar la hipótesis nula implica que las diferencias entre medias no se deben al azar.
 

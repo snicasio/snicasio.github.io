@@ -1,0 +1,62 @@
+---
+title: "Criterios de selección"
+output:
+    html_document:
+        df_print: default
+        toc: true
+        toc_depth: 6
+        toc_float: true
+        number_sections: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Criterio de información de Akaike (AIC)
+
+## Cálculo de AIC
+
+
+$AIC = -2log(\zeta(\hat{\theta}\mid y))+2K$
+
+$AIC = n\;log(\hat{\sigma}^2)+2K$
+
+$\hat{\sigma}^2 = \displaystyle\frac{\sum\epsilon^2_i}{n}$
+
+
+## Akaike corregido
+
+$AICc = AIC + \displaystyle\frac{2K(K+1)}{n-K-1}$
+
+## Sobredispersión
+
+$\hat{c}=\chi^2/df$
+
+$\displaystyle\frac{log(\zeta(\hat{\theta}\mid x,g_i))}{\hat{c}}$
+
+### Corrección (QAIC)
+
+
+$QAIC=-\left[2log(\zeta(\hat{\theta}))/\hat{c}\right]+2K$
+
+
+$QAICc=QAIC+\displaystyle\frac{2K(K+1)}{n-K-1}$
+
+## Diferencias Akaike
+
+$\Delta_i=AIC_i-AIC_{min}$
+
+## Versosimilitud de un modelo
+
+$\zeta(g_i \mid x) \propto exp \left(- \frac{1}{2} \Delta_i \right)$
+
+### Peso Akaike
+
+$w_i = \displaystyle\frac{exp \left(- \frac{1}{2} \Delta_i \right)}{\displaystyle\sum_{r=1}^R exp \left(- \frac{1}{2} \Delta_r \right)}$
+
+### Proporción de evidencia
+
+$ER=\displaystyle\frac{w_1}{w_j} = e^{1/2 \Delta_i}$
+
+# Criterio de información Bayesiano (BIC)
